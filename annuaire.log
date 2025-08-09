@@ -1,0 +1,46 @@
+2025-08-07 21:21:12,790 INFO: Utilisateur admin créé.
+2025-08-07 21:21:12,935 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-07 21:21:12,936 INFO: [33mPress CTRL+C to quit[0m
+2025-08-07 21:21:12,952 INFO:  * Restarting with stat
+2025-08-07 21:21:14,015 WARNING:  * Debugger is active!
+2025-08-07 21:21:14,017 INFO:  * Debugger PIN: 791-163-771
+2025-08-07 21:41:12,465 INFO: Utilisateur admin créé.
+2025-08-07 21:41:12,521 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-07 21:41:12,521 INFO: [33mPress CTRL+C to quit[0m
+2025-08-07 21:41:12,526 INFO:  * Restarting with stat
+2025-08-07 21:41:13,505 WARNING:  * Debugger is active!
+2025-08-07 21:41:13,507 INFO:  * Debugger PIN: 791-163-771
+2025-08-07 21:43:48,772 INFO: 127.0.0.1 - - [07/Aug/2025 21:43:48] "GET /login HTTP/1.1" 200 -
+2025-08-07 21:43:49,351 INFO: 127.0.0.1 - - [07/Aug/2025 21:43:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-07 21:44:19,671 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:19] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-08-07 21:44:19,876 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:19] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-08-07 21:44:20,046 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:20] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-08-07 21:44:20,412 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:20] "GET /login?__debugger__=yes&cmd=resource&f=console.png&s=21RDHTxL4gSni0IhxdsI HTTP/1.1" 200 -
+2025-08-07 21:44:20,670 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:20] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-08-07 21:44:27,375 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:27] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-08-07 21:44:27,537 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:27] "[36mGET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-07 21:44:27,703 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:27] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-07 21:44:28,036 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:28] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png&s=21RDHTxL4gSni0IhxdsI HTTP/1.1[0m" 304 -
+2025-08-07 21:44:28,288 INFO: 127.0.0.1 - - [07/Aug/2025 21:44:28] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-08-08 06:16:58,660 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-08 06:16:58,660 INFO: [33mPress CTRL+C to quit[0m
+2025-08-08 06:16:58,662 INFO:  * Restarting with stat
+2025-08-08 06:16:59,478 WARNING:  * Debugger is active!
+2025-08-08 06:16:59,488 INFO:  * Debugger PIN: 164-710-022
+2025-08-08 06:17:14,737 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:14] "GET /login HTTP/1.1" 200 -
+2025-08-08 06:17:14,809 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-08 06:17:25,429 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:25] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-08-08 06:17:25,643 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:25] "[36mGET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-08-08 06:17:25,784 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:25] "[36mGET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-08-08 06:17:26,154 INFO: 127.0.0.1 - - [08/Aug/2025 06:17:26] "GET /login?__debugger__=yes&cmd=resource&f=console.png&s=mZZAHpCHkKI0nu0NkSDL HTTP/1.1" 200 -
+2025-08-08 06:19:09,316 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-08 06:19:09,316 INFO: [33mPress CTRL+C to quit[0m
+2025-08-08 06:19:09,319 INFO:  * Restarting with stat
+2025-08-08 06:19:10,226 WARNING:  * Debugger is active!
+2025-08-08 06:19:10,228 INFO:  * Debugger PIN: 164-710-022
+2025-08-08 06:19:44,710 INFO: 127.0.0.1 - - [08/Aug/2025 06:19:44] "GET /login HTTP/1.1" 200 -
+2025-08-08 06:19:44,810 INFO: 127.0.0.1 - - [08/Aug/2025 06:19:44] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

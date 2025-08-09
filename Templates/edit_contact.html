@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire - Modifier un contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Modifier un contact</h2>
+        <p>Connecté en tant que : {{ current_user.email }} {% if current_user.is_admin %}(Admin){% endif %} | <a href="/logout">Déconnexion</a></p>
+        
+        <nav class="nav nav-pills mb-3">
+            <a class="nav-link" href="/">Accueil</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/contacts">Tous les contacts</a>
+            <a class="nav-link" href="/reset-password">Réinitialiser mot de passe</a>
+            {% endif %}
+            <a class="nav-link" href="/my-contacts">Mes contacts</a>
+            <a class="nav-link" href="/add_contact">Ajouter un contact</a>
+            <a class="nav-link" href="/public_search">Recherche publique</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/manage_departments">Gérer les départements</a>
+            {% endif %}
+            <a class="nav-link" href="/dashboard">Tableau de bord</a>
+            <a class="nav-link" href="/change-password">Changer mot de passe</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/edit_contact/{{ contact.id }}">
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{ contact.nom or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" value="{{ contact.prenom or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ contact.email or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="num1" class="form-label">Numéro 1</label>
+                <input type="text" class="form-control" id="num1" name="num1" value="{{ contact.num1 or '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="num2" class="form-label">Numéro 2</label>
+                <input type="text" class="form-control" id="num2" name="num2" value="{{ contact.num2 or '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Départements</label>
+                {% for department in departments %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="groups" value="{{ department.id }}" id="group-{{ department.id }}"
+                        {% if department in contact.departments %}checked{% endif %}>
+                    <label class="form-check-label" for="group-{{ department.id }}">{{ department.name }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+</body>
+</html>

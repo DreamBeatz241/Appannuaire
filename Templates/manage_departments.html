@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire - Gérer les départements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Gérer les départements</h2>
+        <p>Connecté en tant que : {{ current_user.email }} (Admin) | <a href="/logout">Déconnexion</a></p>
+        
+        <nav class="nav nav-pills mb-3">
+            <a class="nav-link" href="/">Accueil</a>
+            <a class="nav-link" href="/contacts">Tous les contacts</a>
+            <a class="nav-link" href="/reset-password">Réinitialiser mot de passe</a>
+            <a class="nav-link" href="/my-contacts">Mes contacts</a>
+            <a class="nav-link" href="/add_contact">Ajouter un contact</a>
+            <a class="nav-link" href="/public_search">Recherche publique</a>
+            <a class="nav-link" href="/dashboard">Tableau de bord</a>
+            <a class="nav-link" href="/change-password">Changer mot de passe</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h3>Créer un département</h3>
+        <form method="POST" action="/manage_departments">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nom du département</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </form>
+
+        {% if departments %}
+        <h3 class="mt-4">Liste des départements</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Utilisateurs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dept_name, users in departments %}
+                <tr>
+                    <td>{{ dept_name }}</td>
+                    <td>
+                        {% if users %}
+                            {% for email, role in users %}
+                                {{ email }} ({{ role }})<br>
+                            {% endfor %}
+                        {% else %}
+                            Aucun utilisateur
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Contacts</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Informations</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact_id, fields in contacts %}
+                <tr>
+                    <td>{{ contact_id }}</td>
+                    <td>
+                        {% for field in fields %}
+                            {{ field }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total contacts : {{ total_contacts }}</p>
+        {% else %}
+        <p>Aucun département créé.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

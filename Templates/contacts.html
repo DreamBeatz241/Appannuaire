@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire - Tous les contacts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Tous les contacts</h2>
+        <p>Connecté en tant que : {{ current_user.email }} {% if current_user.is_admin %}(Admin){% endif %} | <a href="/logout">Déconnexion</a></p>
+        
+        <nav class="nav nav-pills mb-3">
+            <a class="nav-link" href="/">Accueil</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/reset-password">Réinitialiser mot de passe</a>
+            {% endif %}
+            <a class="nav-link" href="/my-contacts">Mes contacts</a>
+            <a class="nav-link" href="/add_contact">Ajouter un contact</a>
+            <a class="nav-link" href="/public_search">Recherche publique</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/manage_departments">Gérer les départements</a>
+            {% endif %}
+            <a class="nav-link" href="/dashboard">Tableau de bord</a>
+            <a class="nav-link" href="/change-password">Changer mot de passe</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if contacts %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Informations</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, contact in contacts %}
+                <tr>
+                    <td>{{ index }}</td>
+                    <td>
+                        {% for info in contact %}
+                            {{ info }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if current_user.is_admin or contact[0] in [c.id for c in current_user.contacts] %}
+                        <a href="/edit_contact/{{ index }}" class="btn btn-sm btn-primary">Modifier</a>
+                        <a href="/delete-contact/{{ index }}" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce contact ?')">Supprimer</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Aucun contact trouvé.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

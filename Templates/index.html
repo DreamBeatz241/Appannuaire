@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire - Accueil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Accueil</h2>
+        <p>Connecté en tant que : {{ current_user.email }} {% if current_user.is_admin %}(Admin){% endif %} | <a href="/logout">Déconnexion</a></p>
+        
+        <nav class="nav nav-pills mb-3">
+            <a class="nav-link" href="/contacts">Tous les contacts</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/reset-password">Réinitialiser mot de passe</a>
+            {% endif %}
+            <a class="nav-link" href="/my-contacts">Mes contacts</a>
+            <a class="nav-link" href="/add_contact">Ajouter un contact</a>
+            <a class="nav-link" href="/public_search">Recherche publique</a>
+            {% if current_user.is_admin %}
+            <a class="nav-link" href="/manage_departments">Gérer les départements</a>
+            {% endif %}
+            <a class="nav-link" href="/dashboard">Tableau de bord</a>
+            <a class="nav-link" href="/change-password">Changer mot de passe</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h3>Vos statistiques</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Métrique</th>
+                    <th>Valeur</th>
+                    <th>Pourcentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Total des contacts</td><td>{{ stats.total_contacts }}</td><td>-</td></tr>
+                <tr><td>Numéro 1 - Airtel</td><td>{{ stats.num1_airtel }}</td><td>{{ stats.num1_airtel_percent }}%</td></tr>
+                <tr><td>Numéro 1 - Libertis</td><td>{{ stats.num1_libertis }}</td><td>{{ stats.num1_libertis_percent }}%</td></tr>
+                <tr><td>Numéro 2 - Airtel</td><td>{{ stats.num2_airtel }}</td><td>{{ stats.num2_airtel_percent }}%</td></tr>
+                <tr><td>Numéro 2 - Libertis</td><td>{{ stats.num2_libertis }}</td><td>{{ stats.num2_libertis_percent }}%</td></tr>
+            </tbody>
+        </table>
+
+        {% if admin_stats %}
+        <h3>Statistiques entreprise</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Métrique</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Total des contacts (entreprise)</td><td>{{ admin_stats.company_contacts }}</td></tr>
+                <tr><td>Utilisateurs sans département</td><td>{{ admin_stats.no_dept_users }}</td></tr>
+            </tbody>
+        </table>
+
+        <h4>Contacts par département</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Département</th>
+                    <th>Nombre de contacts</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dept, count in admin_stats.contacts_by_department %}
+                <tr><td>{{ dept }}</td><td>{{ count }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4>Utilisateurs par département</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Département</th>
+                    <th>Nombre d’utilisateurs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dept, count in admin_stats.users_by_department %}
+                <tr><td>{{ dept }}</td><td>{{ count }}</td></tr>
+                <tr><td>Sans département</td><td>{{ admin_stats.no_dept_users }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
